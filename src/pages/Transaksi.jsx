@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "../api/axios";
 import "../styles/transaksi.css";
 
@@ -22,7 +22,8 @@ export default function Transaksi() {
   const [itemsKeluar, setItemsKeluar] = useState([]);
   const [tokoTujuan, setTokoTujuan] = useState("");
   const [keteranganKeluar, setKeteranganKeluar] = useState("Penjualan");
-  const [setOrderIdKeluar] = useState(null);
+  // eslint-disable-next-line no-unused-vars
+  const [orderIdKeluar, setOrderIdKeluar] = useState(null);
 
   const [filterJenis, setFilterJenis] = useState("");
   const [searchTransaksi, setSearchTransaksi] = useState("");
@@ -30,15 +31,12 @@ export default function Transaksi() {
   const ROWS_PER_PAGE = 10;
 
   // ===== FETCH =====
-  const fetchTransaksi = async () => {
+  const fetchTransaksi = useCallback(async () => {
     setLoading(true);
     try {
       const res = await axios.get("/transaksi");
       const data = res.data.data;
-      const merged = data.map(t => ({
-        ...t,
-        items: t.items || []
-      }));
+      const merged = data.map(t => ({ ...t, items: t.items || [] }));
       setTransaksiList(merged);
     } catch (err) {
       console.error(err);
@@ -46,21 +44,21 @@ export default function Transaksi() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const fetchBarang = async () => {
+  const fetchBarang = useCallback(async () => {
     try {
       const res = await axios.get("/barang");
       setBarangList(res.data.data);
     } catch (err) {
       console.error(err);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchTransaksi();
     fetchBarang();
-  }, [filterJenis, searchTransaksi]);
+  }, [fetchTransaksi, fetchBarang, filterJenis, searchTransaksi]);
 
   // ===== FORM =====
   const openForm = (mode) => {
@@ -86,20 +84,13 @@ export default function Transaksi() {
 
   const addItemKeluar = () => {
     if (!selectedBarang || jumlah <= 0) return;
-
     const barang = barangList.find(b => b.id === Number(selectedBarang));
     if (!barang) return;
 
     setItemsKeluar(prev => [
       ...prev,
-      {
-        barang_id: Number(selectedBarang),
-        nama_barang: barang.nama_barang,
-        jumlah,
-        harga_satuan: barang.harga
-      }
+      { barang_id: Number(selectedBarang), nama_barang: barang.nama_barang, jumlah, harga_satuan: barang.harga }
     ]);
-
     setJumlah(0);
   };
 
@@ -149,15 +140,14 @@ export default function Transaksi() {
           user_id: 1
         });
 
-        const orderId = res.data.order_id;
-        setOrderIdKeluar(orderId);
+        setOrderIdKeluar(res.data.order_id);
 
         // Download invoice
-        const pdfRes = await axios.get(`/transaksi/invoice/${orderId}`, { responseType: "blob" });
+        const pdfRes = await axios.get(`/transaksi/invoice/${res.data.order_id}`, { responseType: "blob" });
         const url = window.URL.createObjectURL(new Blob([pdfRes.data]));
         const link = document.createElement("a");
         link.href = url;
-        link.download = `invoice_${orderId}.pdf`;
+        link.download = `invoice_${res.data.order_id}.pdf`;
         link.click();
         window.URL.revokeObjectURL(url);
 
@@ -192,25 +182,24 @@ export default function Transaksi() {
   );
 
   const getPaginationPages = () => {
-  if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
+    if (totalPages <= 5) return Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  let start = Math.max(currentPage - 2, 1);
-  let end = Math.min(start + 4, totalPages);
-  if (end - start < 4) start = Math.max(end - 4, 1);
+    let start = Math.max(currentPage - 2, 1);
+    let end = Math.min(start + 4, totalPages);
+    if (end - start < 4) start = Math.max(end - 4, 1);
 
-  const pages = [];
-  for (let i = start; i <= end; i++) pages.push(i);
+    const pages = [];
+    for (let i = start; i <= end; i++) pages.push(i);
 
-  if (start > 2) pages.unshift("...");
-  if (start > 1) pages.unshift(1);
+    if (start > 2) pages.unshift("...");
+    if (start > 1) pages.unshift(1);
 
-  if (end < totalPages - 1) pages.push("...");
-  if (end < totalPages) pages.push(totalPages);
+    if (end < totalPages - 1) pages.push("...");
+    if (end < totalPages) pages.push(totalPages);
 
-  return pages;
-};
+    return pages;
+  };
 
-  // ===== DELETE =====
   const handleDelete = async (id, jenis) => {
     if (window.confirm(`Yakin hapus transaksi ${jenis}?`)) {
       try {
