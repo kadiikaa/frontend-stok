@@ -1,0 +1,108 @@
+/* container halaman dashboard */
+
+.dashboard-container {
+    /* min-height: 100vh; */
+    background-color: #f6f9fc;
+}
+
+
+/* main content — digeser dari sidebar */
+
+.dashboard-main {
+    margin-left: 220px;
+    /* ⬅️ INI KUNCI */
+    padding: 24px 20px;
+    /* min-height: 100vh; */
+    box-sizing: border-box;
+}
+
+
+/* header halaman */
+
+.page-header {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    color: #fff;
+    padding: 20px 28px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+/* card ringkasan */
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.card h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.card h2 {
+    margin-top: 8px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+
+/* section */
+
+.section {
+    margin-bottom: 32px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-header button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
+/* table */
+
+table th,
+table td {
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+thead th {
+    font-weight: 600;
+}
+
+tbody tr {
+    height: 44px;
+}
+
+tbody td {
+    white-space: nowrap;
+}

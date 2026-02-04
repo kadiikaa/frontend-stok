@@ -1,0 +1,252 @@
+/* ==================== Barang Page ==================== */
+
+.barang-main {
+    margin-left: 220px;
+    /* pastikan sama sidebar */
+    padding: 24px 28px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background-color: #f6f9fc;
+}
+
+
+/* Header */
+
+.barang-main h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+/* Top controls (Tambah + Search) */
+
+.top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    width: 200px;
+    transition: 0.2s;
+}
+
+.search-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+
+/* Buttons */
+
+.btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.btn-add {
+    background-color: #2563eb;
+    color: #fff;
+}
+
+.btn-add:hover {
+    background-color: #1e40af;
+}
+
+.btn-edit {
+    background-color: #facc15;
+    color: #1e293b;
+    margin-right: 6px;
+}
+
+.btn-edit:hover {
+    background-color: #eab308;
+}
+
+.btn-delete {
+    background-color: #dc2626;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #b91c1c;
+}
+
+.btn-cancel {
+    background-color: #64748b;
+    color: #fff;
+}
+
+.btn-cancel:hover {
+    background-color: #475569;
+}
+
+
+/* Table */
+
+.table-wrapper {
+    overflow-x: auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.barang-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.barang-table th,
+.barang-table td {
+    padding: 12px 10px;
+    text-align: left;
+}
+
+.barang-table th {
+    background-color: #e5e7eb;
+    font-weight: 600;
+}
+
+.barang-table tr:nth-child(even) {
+    background-color: #f9fafb;
+}
+
+
+/* Form Card */
+
+.form-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 500px;
+}
+
+.form-card h2 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.form-card label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.form-card input {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-card input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    gap: 6px;
+}
+
+.pagination button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    background: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.pagination button:hover {
+    background: #f1f5f9;
+}
+
+.pagination button.active {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+
+.notif {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: fadein 0.3s, fadeout 0.3s 2.7s;
+}
+
+.notif.success {
+    background-color: #4caf50;
+}
+
+.notif.error {
+    background-color: #f44336;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .barang-main {
+        margin-left: 0;
+        padding: 20px;
+    }
+    .top-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .search-input {
+        width: 100%;
+    }
+}

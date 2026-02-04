@@ -1,0 +1,177 @@
+/* Container laporan — geser dari sidebar */
+
+.laporan-main {
+    margin-left: 220px;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f6f9fc;
+}
+
+
+/* Summary card */
+
+.laporan-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.summary-card {
+    background: #f1f5f9;
+    padding: 16px;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.summary-card p {
+    font-size: 14px;
+    color: #475569;
+    margin: 0;
+}
+
+.summary-card h2 {
+    margin: 4px 0 0 0;
+}
+
+
+/* Table */
+
+.laporan-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    table-layout: fixed;
+}
+
+.laporan-table th,
+.laporan-table td {
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    overflow-wrap: break-word;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.laporan-table th {
+    background: #e5e7eb;
+}
+
+
+/* Kolom spesifik supaya Lebar konsisten */
+
+.laporan-table th:nth-child(1),
+.laporan-table td:nth-child(1) {
+    width: 40px;
+}
+
+.laporan-table th:nth-child(2),
+.laporan-table td:nth-child(2) {
+    width: 100px;
+}
+
+.laporan-table th:nth-child(3),
+.laporan-table td:nth-child(3) {
+    width: 180px;
+}
+
+.laporan-table th:nth-child(4),
+.laporan-table td:nth-child(4) {
+    width: 60px;
+}
+
+.laporan-table th:nth-child(5),
+.laporan-table td:nth-child(5) {
+    width: 120px;
+}
+
+.laporan-table th:nth-child(6),
+.laporan-table td:nth-child(6) {
+    width: 120px;
+}
+
+
+/* Subtotal rata kanan */
+
+.laporan-table td:nth-child(6),
+.laporan-table tfoot th:nth-child(5),
+.laporan-table tfoot th:nth-child(6) {
+    text-align: right;
+}
+
+
+/* Footer Total */
+
+.laporan-table tfoot th {
+    background: #f9fafb;
+    font-weight: bold;
+}
+
+
+/* Filter area */
+
+.laporan-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.laporan-filter input,
+.laporan-filter select {
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1;
+}
+
+.laporan-filter button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.laporan-filter button:hover {
+    background: #1e40af;
+}
+
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    /* Memungkinkan tombol pagination pindah ke baris baru */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* Menambahkan margin bawah */
+}
+
+.pagination button {
+    padding: 8px 12px;
+    /* Menambahkan padding yang lebih besar */
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+    /* Agar hover lebih jelas */
+}
+
+.pagination button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
+    color: #bbb;
+    /* Menambahkan warna abu-abu pada disabled */
+}
