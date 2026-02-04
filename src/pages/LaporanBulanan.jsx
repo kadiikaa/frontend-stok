@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "../api/axios";
 import "../styles/laporan.css";
 
@@ -18,7 +18,7 @@ export default function LaporanBulanan() {
   const [currentPageMasuk, setCurrentPageMasuk] = useState(1);
   const ITEMS_PER_PAGE = 5;
 
-  const fetchLaporan = async () => {
+  const fetchLaporan = useCallback (async () => {
     setFetching(true); // mulai fetch
     try {
       const res = await axios.get("/laporan/bulanan", { params: { bulan, tahun } });
@@ -31,7 +31,7 @@ export default function LaporanBulanan() {
     } finally {
       setFetching(false);
     }
-  };
+  }, [bulan, tahun]);
 
   const downloadPDF = async () => {
     try {
@@ -54,9 +54,7 @@ export default function LaporanBulanan() {
   // Auto-fetch bulan & tahun saat pertama load
   useEffect(() => {
     fetchLaporan();
-  }, [bulan, tahun]);
-  console.log("Data:", data);
-console.log("ITEMS_PER_PAGE:", ITEMS_PER_PAGE)
+  }, [fetchLaporan]);
 
   return (
     <div className="laporan-main">

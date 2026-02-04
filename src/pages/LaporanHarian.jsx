@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "../api/axios";
 import "../styles/laporan.css";
 
@@ -12,7 +12,7 @@ export default function LaporanHarian() {
   const [currentPageMasuk, setCurrentPageMasuk] = useState(1);
   const ITEMS_PER_PAGE = 5; // lebih kecil biar Next bisa muncul
 
-  const fetchLaporan = async () => {
+  const fetchLaporan = useCallback (async () => {
     setLoading(true);
     try {
       const res = await axios.get("/laporan/harian", { params: { tanggal } });
@@ -25,11 +25,11 @@ export default function LaporanHarian() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [tanggal]);
 
   useEffect(() => {
     fetchLaporan();
-  }, []);
+  }, [fetchLaporan]);
 
   if (loading) return <p>Loading...</p>;
 
