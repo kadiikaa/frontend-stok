@@ -6,7 +6,6 @@ export default function LaporanBulanan() {
   const [bulan, setBulan] = useState(new Date().getMonth() + 1);
   const [tahun, setTahun] = useState(new Date().getFullYear());
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(false); // track fetch setiap klik Tampilkan
 
   const namaBulan = [

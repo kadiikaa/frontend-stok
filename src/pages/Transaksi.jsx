@@ -22,7 +22,7 @@ export default function Transaksi() {
   const [itemsKeluar, setItemsKeluar] = useState([]);
   const [tokoTujuan, setTokoTujuan] = useState("");
   const [keteranganKeluar, setKeteranganKeluar] = useState("Penjualan");
-  const [orderIdKeluar, setOrderIdKeluar] = useState(null);
+  const [setOrderIdKeluar] = useState(null);
 
   const [filterJenis, setFilterJenis] = useState("");
   const [searchTransaksi, setSearchTransaksi] = useState("");
