@@ -12,7 +12,7 @@ export default function LaporanHarian() {
   const [currentPageMasuk, setCurrentPageMasuk] = useState(1);
   const ITEMS_PER_PAGE = 5; // lebih kecil biar Next bisa muncul
 
-  const fetchLaporan = useCallback (async () => {
+  const fetchLaporan = useCallback(async () => {
     setLoading(true);
     try {
       const res = await axios.get("/laporan/harian", { params: { tanggal } });

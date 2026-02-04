@@ -23,7 +23,7 @@ export default function Transaksi() {
   const [tokoTujuan, setTokoTujuan] = useState("");
   const [keteranganKeluar, setKeteranganKeluar] = useState("Penjualan");
   // eslint-disable-next-line no-unused-vars
-  const [orderIdKeluar, setOrderIdKeluar] = useState(null);
+  // const [orderIdKeluar, setOrderIdKeluar] = useState(null);
 
   const [filterJenis, setFilterJenis] = useState("");
   const [searchTransaksi, setSearchTransaksi] = useState("");
@@ -71,7 +71,7 @@ export default function Transaksi() {
     setItemsKeluar([]);
     setTokoTujuan("");
     setKeteranganKeluar("Penjualan");
-    setOrderIdKeluar(null);
+    // setOrderIdKeluar(null);
 
     if (barangList.length > 0) {
       setSelectedBarang(barangList[0].id.toString());
@@ -140,7 +140,7 @@ export default function Transaksi() {
           user_id: 1
         });
 
-        setOrderIdKeluar(res.data.order_id);
+        // setOrderIdKeluar(res.data.order_id);
 
         // Download invoice
         const pdfRes = await axios.get(`/transaksi/invoice/${res.data.order_id}`, { responseType: "blob" });

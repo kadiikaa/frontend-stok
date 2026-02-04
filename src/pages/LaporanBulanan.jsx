@@ -18,20 +18,20 @@ export default function LaporanBulanan() {
   const [currentPageMasuk, setCurrentPageMasuk] = useState(1);
   const ITEMS_PER_PAGE = 5;
 
-  const fetchLaporan = useCallback (async () => {
-    setFetching(true); // mulai fetch
-    try {
-      const res = await axios.get("/laporan/bulanan", { params: { bulan, tahun } });
-      setData(res.data); // langsung replace data lama
-      setCurrentPageKeluar(1); // Reset currentPage to 1 on new fetch
-      setCurrentPageMasuk(1); // Reset currentPage to 1 on new fetch
-    } catch (err) {
-      console.error(err);
-      alert("Gagal mengambil laporan bulanan");
-    } finally {
-      setFetching(false);
-    }
-  }, [bulan, tahun]);
+ const fetchLaporan = useCallback(async () => {
+  setFetching(true);
+  try {
+    const res = await axios.get("/laporan/bulanan", { params: { bulan, tahun } });
+    setData(res.data);
+    setCurrentPageKeluar(1);
+    setCurrentPageMasuk(1);
+  } catch (err) {
+    console.error(err);
+    alert("Gagal mengambil laporan bulanan");
+  } finally {
+    setFetching(false);
+  }
+}, [bulan, tahun]);
 
   const downloadPDF = async () => {
     try {
@@ -53,8 +53,8 @@ export default function LaporanBulanan() {
 
   // Auto-fetch bulan & tahun saat pertama load
   useEffect(() => {
-    fetchLaporan();
-  }, [fetchLaporan]);
+  fetchLaporan();
+}, [fetchLaporan]);
 
   return (
     <div className="laporan-main">
