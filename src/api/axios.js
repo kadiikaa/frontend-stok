@@ -1,12 +1,14 @@
 import axios from "axios";
 import { getToken, logout } from "../utils/auth";
 
+// ambil base URL dari environment variable
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
+
 const instance = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: `${API_URL}/api`, // otomatis pakai backend live
 });
 
-
-//  token ke header setiap request
+// token ke header setiap request
 instance.interceptors.request.use((config) => {
     const token = getToken();
     if (token) {
@@ -15,12 +17,11 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
-// Tambahkan interceptor response untuk handle token expired
+// interceptor response untuk handle token expired
 instance.interceptors.response.use(
     response => response,
     error => {
         if (error.response && error.response.status === 401) {
-            // token kadaluarsa atau salah → logout & redirect
             logout();
         }
         return Promise.reject(error);
